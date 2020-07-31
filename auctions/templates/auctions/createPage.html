@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <form action="{% url 'createPage' %}" method="post">
+        {% csrf_token %}
+        Your Item Name:
+            <input name="item" type="text" placeholder="Item">
+            <br><br>
+
+        Select A Category For Your Item:
+            <select name="category">
+                {% for cat in catList %}
+                    <option>{{ cat.category }}</option>
+                {% endfor %}
+                    <option>Other</option>
+            </select>
+            <br><br>
+        
+        Describe Your Item:
+            <input name="description" id="descriptionInput" type="text" placeholder="Description" size=90 height=40px>
+            <br><br>
+            
+        Enter The URL Of An Image Of Your Item (optional):
+            <input name="image" id="imageInput" type="text" placeholder="Image URL" size=90>
+            <br><br>
+
+        Starting Bid:
+            <input name="startBid" type="number" placeholder="Bid" step="0.01">
+            <br><br>
+
+        <input type="submit" value="Create This Listing">
+    </form>
+{% endblock %}

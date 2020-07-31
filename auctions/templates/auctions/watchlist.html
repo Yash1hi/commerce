@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Your Watchlist ({{ user }}): </h2>
+    <br><br>
+    {% for listing in watching %}
+        <h3>
+            <a href="/{{ listing.name }}">{{ listing.name }}</a>
+            <a class="btn btn-danger btn-small" href="{{ listing.name }}/removeWatch" role="button">Remove From WatchList</a>
+        </h3>
+        <span class="badge badge-secondary">{{ listing.category }}</span>
+        <p>{{ listing.description }}</p>
+        <img src="{{ listing.image }}" height=300px width=auto>
+        </br>
+        <hr>   
+    {% endfor %}
+{% endblock %}

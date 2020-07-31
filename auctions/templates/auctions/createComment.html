@@ -1,0 +1,12 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>New Comment for {{ itemName }}</h2>
+
+    <form action="/{{ itemName }}/newComment" method="post">
+        {% csrf_token %}
+        Comment:
+        <input name="comment" type="text" placeholder="Comment" size=90>
+        <input type="submit" value="Post Comment">
+    </form>
+{% endblock %}

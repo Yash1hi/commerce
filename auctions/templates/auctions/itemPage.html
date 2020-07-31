@@ -1,0 +1,34 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div id="infoBlock">
+        <h1>{{ itemListing.name }}  <span class="badge badge-secondary">{{ itemListing.category }}</span></h1>
+        <p>Created By: {{ itemListing.createdBy }}</p>
+        {% if itemListing.createdBy == user %}
+            <a href="/{{ itemListing.name }}/end">End Auction</a>
+        {% endif %}
+        <p>{{ itemListing.description }}</p>
+        <img src="{{ itemListing.image }}" height=300px width=auto>
+    </div>
+    <div id="bidList">
+        <h2>Highest Bid: ${{ highBid.bid }} by {{ highBid.bidder }}</h2>
+
+        <h4>Bids Log:</h4>
+        <a href="/{{ itemListing.name }}/newBid">Place Bid</a>
+        <ul>
+        {% for bids in itemBids %}
+            <li>${{ bids.bid }} was made by {{ bids.bidder }}</li>
+        {% endfor %}
+        </ul>
+        <hr>
+    </div>
+    <div id="commentBlock">
+        <h2>Comments</h2>  
+        <a href="/{{ itemListing.name }}/newComment">New Comment</a>
+        {% for comments in itemComments %}
+            <hr>
+            <p>{{ comments.user }} on {{ comments.date }}: {{ comments.comment }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
